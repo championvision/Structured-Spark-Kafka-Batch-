@@ -86,6 +86,3 @@ with pyhs2.connect(host='ip-10-230-245-94.ec2.internal',port=10000,authMechanism
         #query = "INSERT INTO TABLE default.Topic_res55 (ems_system_id, adi_flight_record_number, MaxOffset, parameter_id, value) VALUES ({},{},{},{},{})".format(getattr(row, "ems_system_id"),getattr(row, "adi_flight_record_number"),getattr(row, "MaxOffset"),getattr(row, "parameter_id"),getattr(row, "value"))
 
 sys.exit()
-
-
-sys.exit()
