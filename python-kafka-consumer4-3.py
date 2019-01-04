@@ -15,7 +15,7 @@ import math
 
 # Python Kafka Client Connection is made.
 
-client = KafkaClient(hosts="10.230.245.220:6667")
+client = KafkaClient(hosts="hostname:port")
 topic = client.topics['topic_res']
 #consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False)
 
