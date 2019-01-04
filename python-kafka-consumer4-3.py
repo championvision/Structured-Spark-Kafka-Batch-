@@ -34,7 +34,7 @@ except (SocketDisconnectedError, NoBrokersAvailableError) as e:
 # We need to obtain a pandas dataframe, for that we write the read
 # string of json into a csv file.
 
-queue_data = open('/data/212708294/try.csv', 'w')
+queue_data = open('pathtocsvfile', 'w')
 csvwriter = csv.writer(queue_data)
 count = 0
 
