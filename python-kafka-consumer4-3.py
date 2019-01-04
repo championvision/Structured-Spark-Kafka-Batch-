@@ -21,7 +21,7 @@ topic = client.topics['topic_res']
 
 # Connection Error Handle
 try:
-    consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
+    consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False)
     consumer.consume()
     consumer.commit_offsets()
 
