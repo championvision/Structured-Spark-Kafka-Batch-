@@ -61,7 +61,7 @@ queue_data.close()
 df = pd.read_csv('/data/212708294/try.csv')
 
 # Hive Connection via the library usage, phys2
-with pyhs2.connect(host='ip-10-230-245-94.ec2.internal',port=10000,authMechanism="KERBEROS")as conn:
+with pyhs2.connect(host='hostname',port=10000,authMechanism="KERBEROS")as conn:
   with conn.cursor()as cur:
     cur.execute("CREATE TABLE default.lasttry (ems_system_id int, adi_flight_record_number int, MaxOffset double, parameter_id string, value bigint) row format delimited fields terminated by ','")
     for row in df.itertuples(index=False, name='Pandas'):
