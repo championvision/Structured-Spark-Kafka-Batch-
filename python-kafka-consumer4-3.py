@@ -15,15 +15,18 @@ import math
 
 # Python Kafka Client Connection is made.
 
-client = KafkaClient(hosts="hostname:port")
+client = KafkaClient(hosts="10.230.245.220:6667")
 topic = client.topics['topic_res']
-consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False)
+#consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False)
 
 # Connection Error Handle
 try:
+    consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
     consumer.consume()
+    consumer.commit_offsets()
+
 except (SocketDisconnectedError, NoBrokersAvailableError) as e:
-    consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False)
+    consumer = topic.get_simple_consumer(consumer_timeout_ms=5000,auto_commit_enable=True,reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
     # use either the above method or the following:
     consumer.stop()
     consumer.start()
@@ -57,7 +60,7 @@ queue_data.close()
 df = pd.read_csv('/data/212708294/try.csv')
 
 # Hive Connection via the library usage, phys2
-with pyhs2.connect(host='hostname:port',port=10000,authMechanism="KERBEROS")as conn:
+with pyhs2.connect(host='ip-10-230-245-94.ec2.internal',port=10000,authMechanism="KERBEROS")as conn:
   with conn.cursor()as cur:
     cur.execute("CREATE TABLE default.lasttry (ems_system_id int, adi_flight_record_number int, MaxOffset double, parameter_id string, value bigint) row format delimited fields terminated by ','")
     for row in df.itertuples(index=False, name='Pandas'):
